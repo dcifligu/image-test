@@ -15,8 +15,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         .swiper {
             width: 95%;
             height: 100%;
@@ -36,19 +39,33 @@
             border-radius: 100%;
             color: #4ADE80;
         }
+
+        #myDiv {
+            display: none;
+        }
     </style>
 
 </head>
 
-<body>
-    <main class="overflow-x-hidden">
+<body onload="myFunction()">
 
+    <div class="h-screen w-screen flex justify-center items-center" id="loader">
+        <div class="flex w-64 animate-pulse gap-2 p-4">
+            <div class="h-12 w-12 rounded-full bg-orange-300"></div>
+            <div class="flex-1">
+                <div class="mb-1 h-5 w-3/5 rounded-lg bg-orange-300 text-lg"></div>
+                <div class="h-5 w-[90%] rounded-lg bg-orange-300 text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="overflow-x-hidden" id="myDiv">
         <div class="bg-slate-50 h-screen">
             <header class="">
                 <div class="px-4 mx-auto sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between h-16 lg:h-20">
                         <div class="flex-shrink-0">
-                            <a href="#" title=""
+                            <a href="/index.html" title=""
                                 class="flex text-3xl font-semibold text-black transition-all duration-200 hover:text-opacity-80">
                                 Fabio Çani
                             </a>
@@ -73,19 +90,19 @@
                         </button>
 
                         <div class="hidden ml-auto lg:flex lg:items-center lg:justify-center lg:space-x-10">
-                            <a href="#" title=""
-                                class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80">
-                                Services </a>
+                            <span onclick="scroll_services()"
+                                class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80 cursor-pointer">
+                                Services </span>
 
-                            <a href="#" title=""
-                                class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80">
-                                About </a>
+                            <span onclick="scroll_about()" title=""
+                                class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80 cursor-pointer">
+                                About </span>
 
                             <div class="w-px h-5 bg-black/20"></div>
 
-                            <a href="#" title=""
+                            <span onclick="scroll_contact()" title=""
                                 class="inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold text-black border-2 border-black hover:bg-black hover:text-white transition-all duration-200 focus:bg-black focus:text-white"
-                                role="button"> Contact </a>
+                                role="button"> Contact </span>
                         </div>
                     </div>
                 </div>
@@ -109,12 +126,12 @@
                                 and content creator from Tirana, Albania.</p>
 
                             <div class="flex flex-col lg:flex-row xl:flex-row mt-10 lg:space-x-8 xl:space-x-9">
-                                <a href="#" title=""
+                                <span onclick="scroll_contact()"
                                     class="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-[#e9a237] hover:bg-orange-600 focus:bg-orange-600 rounded-xl"
-                                    role="button"> Contact </a>
+                                    role="button"> Contact </span>
 
-                                <a href="#" title=""
-                                    class="inline-flex items-center mt-6 text-base font-semibold transition-all duration-200 sm:mt-0 hover:opacity-80">
+                                <span onclick="scroll_work()"
+                                    class="inline-flex items-center mt-6 text-base font-semibold transition-all duration-200 sm:mt-0 hover:opacity-80 cursor-pointer">
                                     <svg class="w-10 h-10 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path fill="#e9a237" stroke="#e9a237" stroke-linecap="round"
@@ -124,7 +141,7 @@
                                             d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     View Work
-                                </a>
+                                </span>
                             </div>
                         </div>
 
@@ -135,7 +152,7 @@
                 </div>
             </section>
         </div>
-        <div class="py-16 bg-zinc-50 h-full">
+        <div class="py-16 bg-zinc-50 h-full" id="about">
 
             <div class="container m-auto px-6 space-y-8 z-10 max-w-7xl">
                 <div class="m-auto text-center lg:w-7/12">
@@ -237,7 +254,7 @@
                         </div>
                     </div>
 
-                    <div class="text-center lg:text-left my-24">
+                    <div class="text-center lg:text-left my-24" id="services">
                         <h2 class="relative text-5xl font-bold text-black sm:text-3xl lg:text-5xl">What do
                             <div class="relative inline-flex">
                                 <span class="absolute inset-x-0 bottom-0 border-b-[20px] border-[#4ADE80]"></span>
@@ -246,7 +263,8 @@
                             </div>
                         </h2>
 
-                        <p class="mt-6 text-base text-gray-600 text-justify">I write pretty much anything. I’ve created
+                        <p class="mt-6 text-base text-gray-600 text-justify">I write pretty much
+                            anything. I’ve created
                             fully
                             fleshed
                             out advertising campaigns, and this includes the concept of the
@@ -263,8 +281,8 @@
                 </div>
             </div>
         </section>
-        <section>
-            <div class=" my-24">
+        <section id="work">
+            <div class="xl:block lg:block md:hidden hidden my-24">
                 <h1 class="relative text-5xl font-bold text-black sm:text-3xl lg:text-5xl text-center my-10">
                     Selected <div class="relative inline-flex">
                         <span class="absolute inset-x-0 bottom-0 border-b-[20px] border-[#4ADE80]"></span>
@@ -272,11 +290,11 @@
                             Advertising Works</h1>
                     </div>
                 </h1>
-                <div class="swiper xl:block lg:block md:hidden hidden">
+                <div class="swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 mx-24 px-6">
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/OTP-bg.jpg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -303,7 +321,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/Big-Market-bg.jpg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -330,7 +348,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/KMY-bg.jpg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -361,7 +379,7 @@
                         </div>
                         <div class="swiper-slide max-h-[60%]">
                             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 mx-24 px-6">
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/Burger-King-bg.jpg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -384,7 +402,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/Air-Albania-bg.jpg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -398,13 +416,13 @@
                                         <div class="mt-32 sm:mt-48 lg:mt-64">
                                             <div
                                                 class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                                                <p class="text-sm text-white">(blank)
+                                                <p class="text-sm text-white">
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/Porsche-bg.jpg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -418,7 +436,7 @@
                                         <div class="mt-32 sm:mt-48 lg:mt-64">
                                             <div
                                                 class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                                                <p class="text-sm text-white">(Blank)
+                                                <p class="text-sm text-white">
                                                 </p>
                                             </div>
                                         </div>
@@ -430,7 +448,7 @@
                         <div class="swiper-slide">
 
                             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 mx-24 px-6">
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/Curse-bg.jpg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -453,7 +471,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/Nifty-bg.jpeg"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -479,7 +497,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="#" class="group relative block bg-zinc-700">
+                                <a href="#" class="group relative block bg-zinc-700 h-[70vh]">
                                     <img alt="Developer" src="./Images/Bordeless-bg.png"
                                         class="absolute inset-0 h-full w-full object-cover opacity-75  transition-opacity group-hover:opacity-50 group-hover:blur-md" />
 
@@ -511,10 +529,122 @@
                     <div class="swiper-button-next"></div>
                 </div>
             </div>
+            <div class="xl:hidden lg:hidden  mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
+                <div class="mx-auto max-w-lg text-center">
+                    <h1 class="relative text-5xl font-bold text-black sm:text-3xl lg:text-5xl text-center my-10">
+                        Selected Advertising<div class="relative inline-flex">
+                            <span class="absolute inset-x-0 bottom-0 border-b-[20px] border-[#4ADE80]"></span>
+                            <h1 class="relative text-5xl font-bold text-black sm:text-3xl lg:text-5xl"> Works</h1>
+                        </div>
+                    </h1>
+                </div>
 
+                <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/OTP.png" class="h-10 w-10">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">Video</h2>
+                        <p class="mt-1 text-base text-gray-800">
+                            In this image campaign/short movie, I took the “Meant for Greatness” claim of the brand, and
+                            dissected it with a
+                            cultural lens. Inspired by “The Cloud Atlass” the commercial treats humanity’s calling for
+                            greatness and remembrance
+                            through the ages. The values that we carry today and will inherit to the future generations
+                            are passed along through
+                            millenia by storytellers of all sorts.
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/Big-market.png" class="h-auto w-16">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">End of year jingle </h2>
+                        <p class="mt-1 text-base text-gray-800">
+                            In this musical-styled ad, I wrote the lyrics to the song, which turned into an infectious
+                            viral sensation. Everyone and
+                            they mother knew the lyrics to the song. This is reflected in Big Market’s YouTube channel,
+                            where the jingle is the most
+                            viewed video by a huge difference. (It has 275,000 views as compared to the second most
+                            viewed video, which has only
+                            14,000)
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/kmy-logo.png" class="h-10 w-auto">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">Bite Sized Love</h2>
+                        <p class="mt-1 text-base text-gray-800">
+                            This ad for mini-saussages utilizes puppets and whimsical, cartoonish comedy to aim at it’s
+                            target audience: children.
+                            It’s wholesome, funny, and somewhat surreal at times and is by far the most original and
+                            memorable commercial of the
+                            meat-processing brand.
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/Burger_King.png" class="h-10 w-auto">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">Static</h2>
+                        <p class="mt-1 text-base text-gray-800">I have created a ton of social-media content for Burger
+                            King Albania. The most notable one is the 4/20 post, which broke
+                            tabus and even engagement records for BKAL’s social media.
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/Air-Albania.png" class="h-10 w-10">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">Static</h2>
+                        <p class="mt-1 text-base text-gray-800">
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/Porsche-Alb.png" class="h-auto w-10">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">Static</h2>
+                        <p class="mt-1 text-base text-gray-800">
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/the-borderless-accountant.png" class="h-auto w-16">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">Web Copy</h2>
+                        <p class="mt-1 text-base text-gray-800">
+                            I wrote the copy for The Borderless Accountant’s web page. It took a lot of effort, since I
+                            had to do plenty of research
+                            for the highly-technical crypto-tax nieche.
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <img src="./Images/Nifty-logo.png" class="h-10 w-10 rounded-md">
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">Article Writing</h2>
+                        <p class="mt-1 text-base text-gray-800">
+                            I wrote an article for the NFT platform Nifty Gateway, concerning the collaborative NFT drop
+                            of artists Marinel Sheu and
+                            Iurie Belegurschi. I took ques from the artists as well as used my insight to craft a
+                            description for the collection, as
+                            well as personal profiles for both artists.
+                        </p>
+                    </a>
+                    <a class="block rounded-xl border border-gray-800 p-8 shadow-xl transition"
+                        href="/services/digital-campaigns">
+                        <i class="fa-solid fa-video" style="color: #33ad60;"></i>
+                        <h2 class="mt-4 text-xl font-bold text-gray-500">The Curse of Curiosity</h2>
+                        <p class="mt-1 text-base text-gray-800">
+                            Inspired by Leonardo DaVinci’s “art as a means of learning” i wrote and helped create
+                            this
+                            short movie that treats the
+                            spiritual reason for the many unfinished art pieces we face in history…and the
+                            curiosity’s
+                            role in this matter.
+                        </p>
+                    </a>
+                </div>
+
+            </div>
         </section>
 
-        <footer class="bg-zinc-500 xl:max-w-7xl lg:max-w-4xl md:max-w-md mx-auto">
+
+        <footer class="bg-zinc-500 xl:max-w-7xl lg:max-w-4xl md:max-w-md mx-auto" id="contact">
             <section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]">
                 <div class="container mx-auto">
                     <div class="-mx-4 flex flex-wrap lg:justify-between">
@@ -563,7 +693,7 @@
                         </div>
                         <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
                             <div class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
-                                <form action="https://formsubmit.co/447775d96d12bbd95836fa4037c25635" method="POST">
+                                <form action="https://formsubmit.co/deivi.cifligu@gmail.com" method="POST">
                                     <div class="mb-6">
                                         <input type="text" placeholder="Your Name" required name="name"
                                             class="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none" />
@@ -839,7 +969,9 @@
     </main>
 </body>
 
+
 <script>
+
     const swiper = new Swiper('.swiper', {
         // Optional parameters
         direction: 'horizontal',
@@ -861,6 +993,38 @@
             el: '.swiper-scrollbar',
         },
     });
+
+    function scroll_about() {
+        const about_element = document.getElementById("about");
+        about_element.scrollIntoView();
+    }
+
+    function scroll_services() {
+        const services_element = document.getElementById("services");
+        services_element.scrollIntoView();
+    }
+
+    function scroll_contact() {
+        const contact_element = document.getElementById("contact");
+        contact_element.scrollIntoView();
+    }
+
+    function scroll_work() {
+        const work_element = document.getElementById("work");
+        work_element.scrollIntoView();
+    }
+
+    var myVar;
+
+    function myFunction() {
+        myVar = setTimeout(showPage, 3000);
+    }
+
+    function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+
 </script>
 
 
